@@ -1,23 +1,13 @@
-package org.example.model;
+package org.example.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Account {
-    private int id;
+public class UpdateAccountDTO {
     private String username;
     private String fullname;
     private String department;
     private String position;
     private LocalDate createdDate;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -57,17 +47,5 @@ public class Account {
 
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", department='" + department + '\'' +
-                ", position='" + position + '\'' +
-                ", createdDate=" + createdDate +
-                '}';
     }
 }
