@@ -16,23 +16,23 @@ public class AccountServiceImpl implements AccountService {
     public Account createAccountInSer(CreateAccountDTO createAccountDTO) {
         //Validate
         //Kiểm tra username
-        if (createAccountDTO.getUsername() == null || createAccountDTO.getUsername().isEmpty()) {
-            throw new IllegalArgumentException("Vui lòng nhập username!");
+        if (createAccountDTO.getUsername() == null || createAccountDTO.getUsername().isEmpty() || createAccountDTO.getUsername().matches("\\d+")) {
+            throw new IllegalArgumentException("Username không hợp lệ! Vui lòng nhập lại username");
         }
 
         //Kiểm tra fullname
-        if (createAccountDTO.getFullname() == null || createAccountDTO.getFullname().isEmpty()) {
-            throw new IllegalArgumentException("Vui lòng nhập họ tên!");
+        if (createAccountDTO.getFullname() == null || createAccountDTO.getFullname().isEmpty() || createAccountDTO.getFullname().matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Họ tên không hợp lệ! Vui lòng nhập lại họ tên");
         }
 
         //Kiểm tra department
-        if (createAccountDTO.getDepartment() == null || createAccountDTO.getDepartment().isEmpty()) {
-            throw new IllegalArgumentException("Vui lòng nhập phòng ban!");
+        if (createAccountDTO.getDepartment() == null || createAccountDTO.getDepartment().isEmpty() || createAccountDTO.getDepartment().matches("\\d+")) {
+            throw new IllegalArgumentException("Department không hợp lệ! Vui lòng nhập lại department");
         }
 
         //Kiểm tra position
-        if (createAccountDTO.getPosition() == null || createAccountDTO.getPosition().isEmpty()) {
-            throw new IllegalArgumentException("Vui lòng nhập chức vụ!");
+        if (createAccountDTO.getPosition() == null || createAccountDTO.getPosition().isEmpty() || createAccountDTO.getPosition().matches("\\d+")) {
+            throw new IllegalArgumentException("Position không hợp lệ! Vui lòng nhập lại position");
         }
 
         Account newAccount = new Account();
@@ -54,11 +54,11 @@ public class AccountServiceImpl implements AccountService {
     public void deleteAccountInSer(String username) {
         //Validate
         //Kiểm tra username
-        if (username == null){
+        if (username == null) {
             throw new IllegalArgumentException("Vui lòng nhập username!");
         }
 
-        if (accountRepository.deleteAccountInRepo(username) == 0){
+        if (accountRepository.deleteAccountInRepo(username) == 0) {
             throw new IllegalArgumentException("Không tìm thấy Account. Vui lòng nhập lại username");
         }
     }
@@ -67,11 +67,11 @@ public class AccountServiceImpl implements AccountService {
     public void checkAccountInSer(String username) {
         //Validate
         //Kiểm tra username
-        if (username == null){
+        if (username == null) {
             throw new IllegalArgumentException("Vui lòng nhập username!");
         }
 
-        if (accountRepository.findAccount(username) == null){
+        if (accountRepository.findAccountByUsername(username) == null) {
             throw new IllegalArgumentException("Không tìm thấy Account. Vui lòng nhập lại username");
         }
     }
@@ -79,15 +79,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account updateAccountInSer(String needUpdateUsername, UpdateAccountDTO updateAccountDTO) {
         //Validate
-        //Kiểm tra username cần sửa
-        if (needUpdateUsername == null){
-            throw new IllegalArgumentException("Vui lòng nhập username cần sửa!");
-        }
-
-        if (accountRepository.findAccount(needUpdateUsername) == null){
-            throw new IllegalArgumentException("Không tìm thấy Account. Vui lòng nhập lại username");
-        }
-
         //Kiểm tra username
         if (updateAccountDTO.getUsername() == null || updateAccountDTO.getUsername().isEmpty()) {
             throw new IllegalArgumentException("Vui lòng nhập username!");
@@ -115,6 +106,6 @@ public class AccountServiceImpl implements AccountService {
         updatedAccount.setPosition(updateAccountDTO.getPosition());
         updatedAccount.setCreatedDate(updateAccountDTO.getCreatedDate());
 
-        return accountRepository.updateAccountInRepo(updatedAccount);
+        return accountRepository.updateAccountInRepo(needUpdateUsername, updatedAccount);
     }
 }

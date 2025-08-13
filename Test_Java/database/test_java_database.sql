@@ -17,8 +17,8 @@ create table Account (
 insert into Account (username, fullname, department, position, createdDate) values 
 ('Duong404', 'Nguyễn Hoàng Dương', 'BU3', 'Intern BrSE', '2025-8-11'),
 ('Hien505', 'Đoàn Ngọc Hiền', 'BU3', 'Intern BrSE', '2025-8-3'),
-('phương333', 'Hoàng Thị Hà Phương', 'BU3', 'Intern BrSE', '2025-8-12');
+('phuong333', 'Hoàng Thị Hà Phương', 'BU3', 'Intern BrSE', '2025-8-12');
 
-select * from Account where fullname = 'Nguyễn Hoàng Dương';
-update Account set username = 'giang404', fullname='Hoàng Giang', department='BU12' where username = 'phương333';
+-- select * from Account where fullname = 'Nguyễn Hoàng Dương';
+-- update Account set username = 'giang404', fullname='Hoàng Giang', department='BU12' where username = 'phương333';
 select * from Account;

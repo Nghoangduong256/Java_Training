@@ -1,0 +1,146 @@
+/* Upper */
+.upper {
+  background-color: #0f355a;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+}
+
+/* Navbar */
+.home-icon i {
+  background-color: #ffc107;
+  color: #08284c;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  height: 3rem;
+}
+
+.navbar-nav li {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-link.active {
+  color: #ffc107;
+}
+
+/* Location Bar */
+.location-bar {
+  background-color: #0f355a;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-bar i {
+  font-size: 18px;
+}
+
+/* Body-1 */
+.video-body-1 {
+  width: 20rem;
+
+  text-align: center;
+  align-self: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.introduction-body-1 h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+.introduction-body-1 span {
+  color: #08284c;
+}
+
+.training-list {
+  color: #08284c;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 150%;
+}
+
+/* Body-2 */
+.body-2 {
+  position: relative;
+  padding: 4rem 1rem;
+  background-color: #08284c;
+  /* background: url(/laneding_page/img/realistic-background-futuristic-style.avif)
+    center/cover no-repeat; */
+  text-align: center;
+  color: white;
+}
+
+.hex {
+  width: 200px; /* điều chỉnh kích thước */
+  height: 175px; /* tỉ lệ √3/2 của 200px */
+  background-color: #ffc107;
+  clip-path: polygon(
+    25% 6.7%,
+    75% 6.7%,
+    100% 50%,
+    75% 93.3%,
+    25% 93.3%,
+    0% 50%
+  );
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.hex p {
+  position: relative;
+  top: 30px;
+  left: 10px;
+  width: 150px;
+}
+
+/* Body-3 */
+.body-3 .btn {
+  display: inline;
+  left: 50%;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.body-3 h3 {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.body-3-container {
+  position: relative;
+  align-self: center;
+  width: 50%;
+}
+
+.body-3-icon {
+  width: 200%;
+  display: flex;
+  justify-self: right;
+}
+
+.body-3-container p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.body-3 .col-1 {
+  margin-bottom: 15px;
+  border-right: solid 1px black;
+}

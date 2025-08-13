@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface AccountRepository {
     Account createAccountInRepo(Account account);
-    Account findAccount(String fullname);
+    Account findAccountByFullname(String fullname);
+    Account findAccountByUsername(String username);
     List<Account> getAllAccountInRepo();
     Integer deleteAccountInRepo(String username);
-    Account updateAccountInRepo(Account account);
+    Account updateAccountInRepo(String needUpdateUsername, Account account);
 }

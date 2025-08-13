@@ -25,11 +25,11 @@ public class AccountRepositoryImpl implements AccountRepository {
             System.out.println("Lỗi khi xử lý connection" + exception.getMessage());
         }
 
-        return findAccount(account.getFullname());
+        return findAccountByFullname (account.getFullname());
     }
 
     @Override
-    public Account findAccount(String fullname) {
+    public Account findAccountByFullname (String fullname) {
         Account createdAccount = null;
         try {
             Connection myConnection = ConnectionConfig.getConnection();
@@ -104,17 +104,46 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account updateAccountInRepo(Account account) {
+    public Account updateAccountInRepo(String needUpdateUsername, Account account) {
         try {
             Connection myConnection = ConnectionConfig.getConnection();
             Statement myStatement = myConnection.createStatement();
-            int effectiveRecordNumber = myStatement.executeUpdate("update Account set username = '" + account.getUsername() + "', fullname ='" +account.getFullname()+"', department='" + account.getDepartment()+"',position='" + account.getPosition() + "',createdDate='" + account.getCreatedDate() +"'");
+            int effectiveRecordNumber = myStatement.executeUpdate("update Account set username = '" + account.getUsername() + "', fullname ='"
+                    + account.getFullname() + "', department='" + account.getDepartment() + "',position='" + account.getPosition() + "',createdDate='"
+                    + account.getCreatedDate() + "' where username = '" + needUpdateUsername + "'");
 
             myConnection.close();
         } catch (Exception exception) {
             System.out.println("Lỗi khi xử lý connection" + exception.getMessage());
         }
 
-        return findAccount(account.getFullname());
+        return findAccountByFullname (account.getFullname());
+    }
+
+    @Override
+    public Account findAccountByUsername(String username) {
+        Account createdAccount = null;
+        try {
+            Connection myConnection = ConnectionConfig.getConnection();
+            Statement myStatement = myConnection.createStatement();
+            ResultSet myResultSet = myStatement.executeQuery(
+                    "select * from Account where username = '" + username + "'");
+
+            while (myResultSet.next()) {
+                createdAccount = new Account();
+                createdAccount.setId(myResultSet.getInt("id"));
+                createdAccount.setUsername(myResultSet.getString("username"));
+                createdAccount.setFullname(myResultSet.getString("fullname"));
+                createdAccount.setDepartment(myResultSet.getString("department"));
+                createdAccount.setPosition(myResultSet.getString("position"));
+                createdAccount.setCreatedDate(myResultSet.getDate("createdDate").toLocalDate());
+            }
+
+            myConnection.close();
+        } catch (Exception exception) {
+            System.out.println("Lỗi khi xử lý connection" + exception.getMessage());
+        }
+
+        return createdAccount;
     }
 }
